@@ -53,7 +53,7 @@ app.get('/auth/github/callback',
     });
     console.log(token);
     res.redirect(
-      `http://127.0.0.1:5501/QR_BOT/Frontend/index.html?id=${token}&name=${user.name}&email=${user.email}`
+      `https://qrbot.netlify.app/index.html?id=${token}&name=${user.name}&email=${user.email}`
     );
 });
 
