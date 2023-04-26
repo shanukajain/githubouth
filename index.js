@@ -55,7 +55,7 @@ app.get('/auth/github/callback',
     var token = jwt.sign({ userID: user._id,role:user.role}, "masai");
     console.log(token);
     res.redirect(
-      `http://127.0.0.1:8000/Frontend/index.html?id=${token}&name=${user.name}&email=${user.email}`
+      `https://mywants.netlify.app/index.html?id=${token}&name=${user.name}&email=${user.email}`
     );
 });
 
