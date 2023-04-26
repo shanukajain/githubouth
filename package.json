@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/abhishek1494k/google_auth_medistar#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.4",

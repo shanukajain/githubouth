@@ -12,22 +12,26 @@ const { uuid } = require("uuidv4");
 
 // ---------->>>>>>>> Configure Strategy <<<<<<<<--------- //
 passport.use(new GitHubStrategy({
-    clientID: "6219ab60fc4542cb8675",
-    clientSecret: "5828ee27bfd7a166dc2e82e7e9d7bcb8d2e71cec",
-    callbackURL: "https://qrbot-github-auth.onrender.com/auth/github/callback",
+    clientID: "76175954cd65e56e88fa",
+    clientSecret: "315919d4efbfbf817f9042109383317790bd8483",
+    callbackURL: "http://localhost:4500/auth/github/callback",
     scope:"user:email"
   },
   async function(accessToken, refreshToken, profile, done) {
-    // console.log(profile.displayName,profile.emails[0].value)
+    // console.log(profile);
     var  name =  profile.displayName;
     let email = profile.emails[0].value
+    let Username=profile.username
+    let role="user";
+    // console.log(name,email,Username,role)
       let user;
       try {
         user = await UserModel.findOne({ email });
         if (user) {
           return done(null, user);
         }
-        user = new UserModel({ name, email, password: uuid() });
+
+        user = new UserModel({ name, email, pass: uuid(),Username,role });
         await user.save();
         return done(null, user);
       } catch (error) {
@@ -47,13 +51,11 @@ app.get('/auth/github/callback',
   function(req, res) {
     // Successful authentication, redirect home.
     let user = req.user;
-    console.log(user);
-    var token = jwt.sign({ email: user.email }, "Secret", {
-      expiresIn: "1d",
-    });
+    // console.log(user);
+    var token = jwt.sign({ userID: user._id,role:user.role}, "masai");
     console.log(token);
     res.redirect(
-      `https://qrbot.netlify.app/index.html?id=${token}&name=${user.name}&email=${user.email}`
+      `http://127.0.0.1:8000/Frontend/index.html?id=${token}&name=${user.name}&email=${user.email}`
     );
 });
 
@@ -68,6 +70,3 @@ app.listen(4500, async () => {
     }
   });
 
-// ---------->>>>>>>> Github Credentials <<<<<<<<--------- //
-// 5828ee27bfd7a166dc2e82e7e9d7bcb8d2e71cec
-// 6219ab60fc4542cb8675

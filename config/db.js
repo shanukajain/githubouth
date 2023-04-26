@@ -1,10 +1,7 @@
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-
+const mongoose=require("mongoose");
 // require("dotenv").config();
-
-const connection = mongoose.connect("mongodb+srv://QRBot:QRBot@qrbot.oagp3ux.mongodb.net/QRBot?retryWrites=true&w=majority");
-
-module.exports = {
-  connection,
-};
+// const url=process.env.mongoURL;
+const connection=mongoose.connect("mongodb+srv://shanuka:shanuka@cluster0.43we5sk.mongodb.net/mywants?retryWrites=true&w=majority");
+module.exports={
+    connection
+}
