@@ -14,7 +14,7 @@ const { uuid } = require("uuidv4");
 passport.use(new GitHubStrategy({
     clientID: "76175954cd65e56e88fa",
     clientSecret: "315919d4efbfbf817f9042109383317790bd8483",
-    callbackURL: "https://github-auth-my-wants.onrender.com/auth/github/callback",
+    callbackURL: "http://localhost:4500/auth/github/callback",
     scope:"user:email"
   },
   async function(accessToken, refreshToken, profile, done) {
