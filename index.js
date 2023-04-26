@@ -18,7 +18,7 @@ passport.use(new GitHubStrategy({
     scope:"user:email"
   },
   async function(accessToken, refreshToken, profile, done) {
-    // console.log(profile);
+    console.log(profile);
     var  name =  profile.displayName;
     let email = profile.emails[0].value
     let Username=profile.username
